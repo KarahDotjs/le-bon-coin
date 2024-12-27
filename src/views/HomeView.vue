@@ -33,9 +33,18 @@ onMounted(async () => {
         </button>
       </div>
 
-      <div>
+      <div class="offersList">
         <OfferCard v-for="offer in offerslist" :key="offer.id" :offerInfos="offer" />
       </div>
     </div>
   </main>
 </template>
+
+<style scoped>
+.offersList {
+  border: 2px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+</style>
