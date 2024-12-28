@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import BtnPublishOffer from './BtnPublishOffer.vue'
+</script>
 
 <template>
   <header>
@@ -6,10 +8,7 @@
       <div>
         <img src="../assets/logo.svg" alt="" />
         <div>
-          <button>
-            <font-awesome-icon :icon="['far', 'plus-square']" />
-            Déposer une annonce
-          </button>
+          <BtnPublishOffer />
           <div>
             <input type="text" name="search" id="search" />
             <font-awesome-icon :icon="['fas', 'search']" />

@@ -5,6 +5,8 @@ axios
 
 import OfferCard from '@/components/OfferCard.vue'
 
+import TimeToSell from '@/components/TimeToSell.vue'
+
 const offerslist = ref([])
 
 onMounted(async () => {
@@ -23,15 +25,11 @@ onMounted(async () => {
 
 <template>
   <main>
-    <div class="container">
+    <p v-if="offerslist.length === 0" class="container">Chargement en cours ...</p>
+    <div class="container" v-else>
       <p>Des millions de petites annonces et autant d’occasions de se faire plaisir</p>
-      <div>
-        <p>C'est le moment de vendre</p>
-        <button>
-          <font-awesome-icon :icon="['far', 'plus-square']" />
-          Déposer une annonce
-        </button>
-      </div>
+
+      <TimeToSell />
 
       <div class="offersList">
         <OfferCard v-for="offer in offerslist" :key="offer.id" :offerInfos="offer" />

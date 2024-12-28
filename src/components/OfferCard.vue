@@ -14,6 +14,7 @@ const props = defineProps({
           :src="offerInfos.attributes.owner.data.attributes.avatar.data.attributes.url"
           class="avatar"
           alt=""
+          v-if="offerInfos.attributes.owner.data.attributes.avatar.data"
         />
 
         <p>{{ offerInfos.attributes.owner.data.attributes.username }}</p>
