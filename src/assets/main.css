@@ -1,9 +1,12 @@
 @import './base.css';
 :root {
   --orange: #ec5a13;
+  --med-grey: #e6eaee;
   --light-grey: #f4f9fe;
   --beige: #fee9dd;
   --dark-grey: #627c93;
+  --light-brown: #89380f;
+  --blue: #094170;
 }
 .container {
   width: 65.938rem; /* //1055px// */

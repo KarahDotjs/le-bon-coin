@@ -68,7 +68,8 @@ const formatedDate = computed(() => {
 }
 .offerCard > div > div {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  /* justify-content: space-between; */
 }
 .dateAd {
   color: var(--dark-grey);

@@ -2,7 +2,10 @@
 
 <template>
   <footer>
-    <p class="container">Made by <span>Le Reacteur</span> with <span>Vue.js</span></p>
+    <p>
+      Made by <a href="https://www.lereacteur.io/"> Le Reacteur </a> with
+      <a href="https://vuejs.org/"> Vue.js</a>
+    </p>
   </footer>
 </template>
 
@@ -10,18 +13,16 @@
 footer {
   height: 80px;
   width: 100%;
-  background-color: #f4f9fe;
-}
-p {
+  background-color: var(--light-grey);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5em;
 }
-/* a {
-  text-decoration: none;
-} */
-span {
+p {
+  font-size: 1em;
+}
+
+a {
   font-weight: bold;
   color: black;
 }
