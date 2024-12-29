@@ -5,24 +5,24 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
 <template>
   <header>
     <div class="container">
-      <div>
+      <div class="topPart">
         <img src="../assets/logo.svg" alt="" />
-        <div>
+        <div class="middlePart">
           <BtnPublishOffer />
           <div>
-            <input type="text" name="search" id="search" />
+            <input type="text" name="search" id="search" placeholder="Rechercher sur leBonCoin " />
             <font-awesome-icon :icon="['fas', 'search']" />
           </div>
         </div>
-        <div>
+        <div class="userPart">
           <div>
             <font-awesome-icon :icon="['far', 'user']" />
             <p>Se connecter</p>
           </div>
-          <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
+          <!-- <font-awesome-icon :icon="['fas', 'sign-out-alt']" /> -->
         </div>
       </div>
-      <div>
+      <div class="bottomPart">
         <span>Immobilier</span>
         <font-awesome-icon :icon="['fas', 'circle']" />
         <span>Véhicules</span>
@@ -49,17 +49,72 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
 
 <style scoped>
 header {
-  height: 110px;
+  height: 6.875rem;
   border: 1px solid green;
 }
 .container > div {
-  border: 1px solid red;
   display: flex;
 }
-.container {
-  border: 2px solid blue;
+
+/* -- TOP PART ---*/
+.topPart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+}
+.middlePart {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.middlePart > div {
+  background-color: var(--light-grey);
+  padding: 0.438rem;
+  border-radius: 0.625rem;
+}
+.middlePart > div svg {
+  background-color: var(--orange);
+  padding: 0.188rem;
+  border-radius: 0.313rem;
+  box-sizing: content-box;
+}
+input {
+  width: 15.625rem;
+  border: none;
+  background-color: var(--light-grey);
+}
+input::placeholder {
+  color: black;
+}
+input:focus {
+  outline: none;
+}
+
+.userPart > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  gap: 10px;
+}
+.userPart svg {
+  font-size: 1.125rem;
 }
 img {
   width: 140px;
+}
+
+/* -- BOTTOM PART ---------*/
+
+.bottomPart {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+.bottomPart svg {
+  font-size: 3px;
 }
 </style>
