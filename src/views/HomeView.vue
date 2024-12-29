@@ -37,8 +37,21 @@ onMounted(async () => {
     </div>
   </main>
 </template>
+f
 
 <style scoped>
+.container {
+  padding: 50px;
+}
+
+.container > p {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 50px;
+
+  font-size: 1.5rem;
+}
+
 .offersList {
   border: 2px solid red;
   display: flex;

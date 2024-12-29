@@ -50,7 +50,7 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
 <style scoped>
 header {
   height: 6.875rem;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 .container > div {
   display: flex;
