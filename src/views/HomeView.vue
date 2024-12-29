@@ -53,9 +53,8 @@ f
 }
 
 .offersList {
-  border: 2px solid red;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 30px 15px;
 }
 </style>

@@ -1,15 +1,20 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import { computed } from 'vue'
 
 const props = defineProps({
   offerInfos: Object,
 })
+
+const formatedDate = computed(() => {
+  return props.offerInfos.attributes.publishedAt.split('T')[0].split('-').reverse().join('/')
+})
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'offer', params: { id: offerInfos.id } }">
+  <RouterLink :to="{ name: 'offer', params: { id: offerInfos.id } }" class="offerCard">
     <div>
-      <div>
+      <div class="ownerInfos">
         <img
           :src="offerInfos.attributes.owner.data.attributes.avatar.data.attributes.url"
           class="avatar"
@@ -23,7 +28,7 @@ const props = defineProps({
       <p>{{ offerInfos.attributes.title }}</p>
       <p>{{ offerInfos.attributes.price }}€</p>
       <div>
-        <p>{{ offerInfos.attributes.publishedAt }}</p>
+        <p class="dateAd">{{ formatedDate }}</p>
         <font-awesome-icon :icon="['far', 'heart']" />
       </div>
     </div>
@@ -31,13 +36,45 @@ const props = defineProps({
 </template>
 
 <style scoped>
-img {
-  width: 150px;
-  height: 200px;
+.offerCard {
+  width: calc((100% - 60px) / 5);
+}
+.offerCard > div > img {
+  width: 100%;
+  height: 240px;
   object-fit: cover;
+  border-radius: 15px;
+}
+.offerCard > div > p {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.ownerInfos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.ownerInfos p {
+  font-weight: bold;
+  font-size: 12px;
 }
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.offerCard > div > div {
+  display: flex;
+  justify-content: space-between;
+}
+.dateAd {
+  color: var(--dark-grey);
+  font-size: 0.75rem;
+}
+.dateAd + svg {
+  font-size: 18px;
 }
 </style>

@@ -18,4 +18,7 @@ button {
   font-weight: bolder;
   font-size: inherit;
 }
+button svg {
+  margin-right: 5px;
+}
 </style>

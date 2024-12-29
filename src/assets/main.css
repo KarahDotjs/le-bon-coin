@@ -3,6 +3,7 @@
   --orange: #ec5a13;
   --light-grey: #f4f9fe;
   --beige: #fee9dd;
+  --dark-grey: #627c93;
 }
 .container {
   width: 65.938rem; /* //1055px// */
@@ -11,4 +12,8 @@
 }
 body {
   font-family: 'nunito sans', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
