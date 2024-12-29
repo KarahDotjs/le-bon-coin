@@ -11,13 +11,19 @@
 
 <style scoped>
 footer {
-  height: 80px;
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-grey);
+}
+/* height: 80px;
   width: 100%;
   background-color: var(--light-grey);
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 p {
   font-size: 1em;
 }

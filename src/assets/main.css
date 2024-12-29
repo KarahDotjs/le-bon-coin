@@ -7,6 +7,8 @@
   --dark-grey: #627c93;
   --light-brown: #89380f;
   --blue: #094170;
+  --header-height: 110px;
+  --footer-height: 80px;
 }
 .container {
   width: 65.938rem; /* //1055px// */

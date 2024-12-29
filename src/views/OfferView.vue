@@ -45,7 +45,7 @@ const formatedDate = computed(() => {
           <p>{{ offerInfos.attributes.description }}</p>
         </div>
         <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
-        <span> Agon-Coutainville (50230) </span>
+        <span class="city"> Agon-Coutainville (50230) </span>
       </div>
 
       <div class="rightCol ownerInfos">
@@ -74,6 +74,9 @@ const formatedDate = computed(() => {
 </template>
 
 <style scoped>
+main {
+  min-height: calc(100vh - var(--header-height) - var(--height-footer));
+}
 .container {
   display: flex;
   gap: 20px;
@@ -110,6 +113,11 @@ h2 {
   border-top: 1px solid var(--med-grey);
   border-bottom: 1px solid var(--med-grey);
   margin-bottom: 20px;
+}
+.city {
+  border-top: 1px solid var(--med-grey);
+  margin: 50px 0px 25px;
+  padding-top: 20px;
 }
 .leftCol {
   width: 67%;
