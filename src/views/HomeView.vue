@@ -40,6 +40,9 @@ onMounted(async () => {
 f
 
 <style scoped>
+main {
+  min-height: calc(100vh - var(--header-height) - var(--height-footer));
+}
 .container {
   padding: 50px;
 }

@@ -1,5 +1,7 @@
 @import './base.css';
 :root {
+  --header-height: 110px;
+  --footer-height: 80px;
   --orange: #ec5a13;
   --med-grey: #e6eaee;
   --light-grey: #f4f9fe;
@@ -7,8 +9,6 @@
   --dark-grey: #627c93;
   --light-brown: #89380f;
   --blue: #094170;
-  --header-height: 110px;
-  --footer-height: 80px;
 }
 .container {
   width: 65.938rem; /* //1055px// */

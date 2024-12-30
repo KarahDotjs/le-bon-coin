@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 import BtnPublishOffer from './BtnPublishOffer.vue'
 </script>
 
@@ -6,7 +7,9 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
   <header>
     <div class="container">
       <div class="topPart">
-        <img src="../assets/logo.svg" alt="" />
+        <RouterLink :to="{ name: 'home' }">
+          <img src="../assets/logo.svg" alt="" />
+        </RouterLink>
         <div class="middlePart">
           <BtnPublishOffer />
           <div>
