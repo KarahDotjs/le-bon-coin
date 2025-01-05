@@ -14,7 +14,6 @@ onMounted(async () => {
     const { data } = await axios.get(
       'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar',
     )
-    console.log(data.data)
 
     offerslist.value = data.data
   } catch (error) {

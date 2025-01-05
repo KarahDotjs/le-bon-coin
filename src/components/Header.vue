@@ -20,7 +20,7 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
         <div class="userPart">
           <div>
             <font-awesome-icon :icon="['far', 'user']" />
-            <p>Se connecter</p>
+            <RouterLink :to="{ name: 'login' }">Se connecter</RouterLink>
           </div>
           <!-- <font-awesome-icon :icon="['fas', 'sign-out-alt']" /> -->
         </div>

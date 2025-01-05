@@ -1,11 +1,19 @@
 <script setup>
 import axios from 'axios'
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, inject } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 
 const username = ref('')
 const email = ref('')
 const password = ref('')
+const errorMessage = ref('')
+const isSubmitting = ref(false)
+
+const GlobalStore = inject('GlobalStore')
+
+const router = useRouter()
+
+console.log('GlobalStore>>>>', GlobalStore)
 
 const handleSubmit = async () => {
   console.log({
@@ -14,18 +22,28 @@ const handleSubmit = async () => {
     password: password.value,
   })
 
-  try {
-    const { data } = await axios.post(
-      'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local/register',
-      {
-        username: username.value,
-        email: email.value,
-        password: password.value,
-      },
-    )
-    console.log('response>>', data)
-  } catch (error) {
-    console.log('catch>>>>>>', error)
+  if (username.value && email.value && password.value) {
+    isSubmitting.value = true
+    try {
+      const { data } = await axios.post(
+        'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local/register',
+        {
+          username: username.value,
+          email: email.value,
+          password: password.value,
+        },
+      )
+      console.log('response>>', data)
+      GlobalStore.changeToken(data.jwt)
+
+      router.push({ name: 'home' })
+    } catch (error) {
+      console.log('catch>>>>>>', error)
+      errorMessage.value = 'Un problème est survenu, Veuillez essayer à nouveau'
+    }
+    isSubmitting.value = false
+  } else {
+    errorMessage.value = 'Veuillez remplir tous les champs'
   }
 }
 </script>
@@ -45,7 +63,11 @@ const handleSubmit = async () => {
         <label for="password">Mot de passe <sup>*</sup></label
         ><input type="password" name="password" id="password" v-model="password" />
 
-        <button>S'incrire</button>
+        <p v-if="isSubmitting">Insription en cours ...</p>
+
+        <button v-else>S'incrire</button>
+
+        <p v-if="errorMessage">{{ errorMessage }}</p>
 
         <p>
           Vous avez déjà un compte ?
