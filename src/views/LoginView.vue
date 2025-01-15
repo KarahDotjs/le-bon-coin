@@ -5,6 +5,8 @@ import axios from 'axios'
 
 const email = ref('')
 const password = ref('')
+const errorMessage = ref('')
+const isSubmitting = ref(false)
 
 const GlobalStore = inject('GlobalStore')
 
@@ -16,21 +18,28 @@ const handleSubmit = async () => {
     password: password.value,
   })
 
-  try {
-    const { data } = await axios.post(
-      'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local',
-      {
-        identifier: email.value,
-        password: password.value,
-      },
-    )
+  if (email.value && password.value) {
+    isSubmitting.value = true
+    try {
+      const { data } = await axios.post(
+        'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/auth/local',
+        {
+          identifier: email.value,
+          password: password.value,
+        },
+      )
 
-    console.log('response>>>>', data)
-    GlobalStore.changeToken(data.jwt)
+      console.log('response>>>>', data)
+      GlobalStore.changeToken(data.jwt)
 
-    router.push({ name: 'home' })
-  } catch (error) {
-    console.log('catch>>>>>', error)
+      router.push({ name: 'home' })
+    } catch (error) {
+      console.log('catch>>>>>', error)
+      errorMessage.value = 'Un problème est survenu, veuillez essayer à nouveau'
+    }
+    isSubmitting.value = false
+  } else {
+    errorMessage.value = 'Veuillez remplir tous les champs'
   }
 }
 </script>
@@ -39,20 +48,29 @@ const handleSubmit = async () => {
   <main>
     <div class="container">
       <form @submit.prevent="handleSubmit">
-        <h1>Bonjour !</h1>
-        <h2>Connectez-vous pour découvrir toutes nos fonctionnalités.</h2>
+        <div>
+          <h1>Bonjour !</h1>
+          <h2>Connectez-vous pour découvrir toutes nos fonctionnalités.</h2>
+        </div>
 
-        <label for="email">E-mail <sup>*</sup></label
-        ><input type="email" name="email" id="email" v-model="email" />
+        <label for="email"
+          >E-mail <sup>*</sup>
+          <input type="email" name="email" id="email" v-model="email" />
+        </label>
+        <label for="password">
+          Mot de passe <sup>*</sup
+          ><input type="password" name="password" id="password" v-model="password"
+        /></label>
+
+        <p v-if="isSubmitting">Connexion en cours ...</p>
+
+        <button v-else>Se connecter</button>
+        <p v-if="errorMessage">{{ errorMessage }}</p>
+        <p>
+          Envie de nous rejoindre ?
+          <RouterLink :to="{ name: 'signup' }">Créer un compte</RouterLink>
+        </p>
       </form>
-
-      <label for="password"> Mot de passe <sup>*</sup></label
-      ><input type="password" name="" id="password" v-model="password" />
-
-      <button>Se connecter</button>
-
-      <p>Envie de nous rejoindre ?</p>
-      <RouterLink :to="{ name: 'signup' }">Créer un compte</RouterLink>
     </div>
   </main>
 </template>
@@ -61,4 +79,44 @@ const handleSubmit = async () => {
 main {
   height: calc(100vh - var(--header-height) - var(--footer-height));
 }
+.container {
+  background-image: url(../assets/illustration.png);
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+} */
+form {
+  height: 30.625rem;
+  width: 30rem;
+  border-radius: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  padding: 1.875rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 7px 1px var(--med-grey);
+}
+
+/* input {
+  height: 2.813rem;
+  border-radius: 15px;
+  border: 1px solid var(--dark-grey);
+  gap: 10px;
+} */
 </style>

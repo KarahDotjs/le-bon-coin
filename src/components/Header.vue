@@ -1,6 +1,10 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import BtnPublishOffer from './BtnPublishOffer.vue'
+import { inject } from 'vue'
+
+const GlobalStore = inject('GlobalStore')
+console.log(GlobalStore.userToken)
 </script>
 
 <template>
@@ -18,13 +22,16 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
           </div>
         </div>
         <div class="userPart">
-          <div>
-            <font-awesome-icon :icon="['far', 'user']" />
-            <RouterLink :to="{ name: 'login' }">Se connecter</RouterLink>
-          </div>
-          <!-- <font-awesome-icon :icon="['fas', 'sign-out-alt']" /> -->
+          <RouterLink :to="{ name: 'login' }" v-if="!GlobalStore.value">
+            <div>
+              <font-awesome-icon :icon="['far', 'user']" />
+              <p>Se connecter</p>
+            </div>
+          </RouterLink>
+          <font-awesome-icon :icon="['fas', 'sign-out-alt']" v-else />
         </div>
       </div>
+
       <div class="bottomPart">
         <span>Immobilier</span>
         <font-awesome-icon :icon="['fas', 'circle']" />
@@ -52,8 +59,14 @@ import BtnPublishOffer from './BtnPublishOffer.vue'
 
 <style scoped>
 header {
-  height: 6.875rem;
-  /* border: 1px solid green; */
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid var(--dark-grey);
+
+  /* border: 5px solid red; */
 }
 .container > div {
   display: flex;
@@ -94,7 +107,7 @@ input:focus {
   outline: none;
 }
 
-.userPart > div {
+.userPart div {
   display: flex;
   flex-direction: column;
   align-items: center;

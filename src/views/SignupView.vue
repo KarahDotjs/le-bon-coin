@@ -13,7 +13,7 @@ const GlobalStore = inject('GlobalStore')
 
 const router = useRouter()
 
-console.log('GlobalStore>>>>', GlobalStore)
+// console.log('GlobalStore>>>>', GlobalStore)
 
 const handleSubmit = async () => {
   console.log({
