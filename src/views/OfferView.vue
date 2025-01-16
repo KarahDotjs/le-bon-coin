@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue'
 import axios from 'axios'
+import { useCycleList } from '@vueuse/core'
 
 const props = defineProps({
   id: String,
@@ -28,6 +29,16 @@ onMounted(async () => {
 const formatedDate = computed(() => {
   return offerInfos.value.attributes.publishedAt.split('T')[0].split('-').reverse().join('/')
 })
+
+const cycleList = computed(() => {
+  if (offerInfos.value.attributes.pictures.data) {
+    const { state, next, prev } = useCycleList(offerInfos.value.attributes.pictures.data)
+
+    return { state, next, prev }
+  } else {
+    return {}
+  }
+})
 </script>
 
 <template>
@@ -36,7 +47,11 @@ const formatedDate = computed(() => {
 
     <div class="container" v-else>
       <div class="leftCol">
-        <img :src="offerInfos.attributes.pictures.data[0].attributes.url" alt="" />
+        <div class="caroussel">
+          <font-awesome-icon :icon="['fas', 'angle-left']" @click="cycleList.prev()" />
+          <img :src="cycleList.state.value.attributes.url" alt="" @click="cycleList.next()" />
+          <font-awesome-icon :icon="['fas', 'angle-right']" />
+        </div>
         <p class="title">{{ offerInfos.attributes.title }}</p>
         <p class="price">{{ offerInfos.attributes.price }} €</p>
         <p class="dateInfos">{{ formatedDate }}</p>
@@ -184,5 +199,9 @@ h2 {
 }
 .buttonPart :last-child {
   background-color: var(--blue);
+}
+.caroussel {
+  display: flex;
+  align-items: center;
 }
 </style>
