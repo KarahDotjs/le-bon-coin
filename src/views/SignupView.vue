@@ -52,16 +52,23 @@ const handleSubmit = async () => {
   <main>
     <div class="container">
       <form @submit.prevent="handleSubmit">
-        <h1>Bonjour</h1>
-        <h2>Inscrivez-vous pour découvrir toutes nos fonctionnalités.</h2>
-        <label for="username">Nom <sup>*</sup> </label
+        <div>
+          <h1>Bonjour !</h1>
+          <P>Inscrivez-vous pour découvrir toutes nos fonctionnalités.</P>
+        </div>
+        <label for="username"
+          ><span>Nom <sup>*</sup> </span></label
         ><input type="text" name="username" id="username" v-model="username" />
 
-        <label for="email">E-mail <sup>*</sup></label
-        ><input type="email" name="email" id="email" v-model="email" />
+        <label for="email"
+          ><span>E-mail <sup>*</sup></span
+          ><input type="email" name="email" id="email" v-model="email"
+        /></label>
 
-        <label for="password">Mot de passe <sup>*</sup></label
-        ><input type="password" name="password" id="password" v-model="password" />
+        <label for="password"
+          ><span>Mot de passe <sup>*</sup></span
+          ><input type="password" name="password" id="password" v-model="password"
+        /></label>
 
         <p v-if="isSubmitting">Insription en cours ...</p>
 
@@ -81,5 +88,62 @@ const handleSubmit = async () => {
 <style scoped>
 main {
   height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+.container {
+  background-image: url(../assets/illustration.png);
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div p {
+  font-size: 16px;
+}
+form {
+  height: 30.625rem;
+  width: 30rem;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.875rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 7px 1px var(--med-grey);
+}
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  line-height: 24px;
+}
+input {
+  height: 2.813rem;
+  border-radius: 15px;
+  border: 1px solid var(--dark-grey);
+  gap: 10px;
+  width: 100%;
+}
+button {
+  border: none;
+  background-color: var(--orange);
+  font-size: 14px;
+  height: 2.813rem;
+  border-radius: 15px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+p:last-child {
+  text-align: center;
+}
+a {
+  font-weight: bold;
+  text-decoration: underline;
 }
 </style>

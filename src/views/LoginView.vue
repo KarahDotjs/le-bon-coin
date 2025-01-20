@@ -68,7 +68,7 @@ const handleSubmit = async () => {
         <p v-if="errorMessage">{{ errorMessage }}</p>
         <p>
           Envie de nous rejoindre ?
-          <RouterLink :to="{ name: 'signup' }"> <span>Créer un compte</span></RouterLink>
+          <RouterLink :to="{ name: 'signup' }">Créer un compte</RouterLink>
         </p>
       </form>
     </div>
@@ -94,10 +94,6 @@ h1 {
   margin-bottom: 15px;
 }
 
-/* h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-} */
 form {
   height: 30.625rem;
   width: 30rem;
@@ -121,9 +117,14 @@ input {
   width: 100%;
 }
 
-form p {
+p:last-child {
   text-align: center;
 }
+a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 label {
   margin-bottom: 7px;
   font-size: 16px;
@@ -141,5 +142,8 @@ button {
   border-radius: 15px;
   color: rgb(255, 255, 255);
   font-weight: bold;
+}
+svg {
+  margin-left: 10px;
 }
 </style>
