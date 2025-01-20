@@ -60,7 +60,7 @@ const handleSubmit = async () => {
         </label>
         <label for="password">
           Mot de passe <sup>*</sup>
-          <div>
+          <div class="inputPassword">
             <input
               :type="displayPassword ? 'text' : 'password'"
               name="password"
@@ -68,23 +68,24 @@ const handleSubmit = async () => {
               v-model="password"
               @input="errorMessage = ''"
             />
-            <font-awesome-icon
-              :icon="['far', 'eye-slash']"
-              v-if="!displayPassword"
-              @click="displayPassword = !displayPassword"
-            />
-            <font-awesome-icon
-              :icon="['far', 'eye']"
-              v-else
-              @click="displayPassword = !displayPassword"
-            />
+            <div>
+              <font-awesome-icon
+                :icon="['far', 'eye-slash']"
+                v-if="!displayPassword"
+                @click="displayPassword = !displayPassword"
+              />
+              <font-awesome-icon
+                :icon="['far', 'eye']"
+                v-else
+                @click="displayPassword = !displayPassword"
+              />
+            </div>
           </div>
         </label>
-
         <p v-if="isSubmitting">Connexion en cours ...</p>
-
         <button v-else>Se connecter <font-awesome-icon :icon="['fas', 'arrow-right']" /></button>
-        <p v-if="errorMessage">{{ errorMessage }}</p>
+
+        <p v-if="errorMessage" class="errorText">{{ errorMessage }}</p>
         <p>
           Envie de nous rejoindre ?
           <RouterLink :to="{ name: 'signup' }">Créer un compte</RouterLink>
@@ -117,7 +118,6 @@ form {
   height: 30.625rem;
   width: 30rem;
   border-radius: 1.25rem;
-
   display: flex;
   flex-direction: column;
   padding: 1.875rem;
@@ -131,9 +131,23 @@ form {
 input {
   height: 2.813rem;
   border-radius: 15px;
-  border: 1px solid var(--dark-grey);
-  gap: 10px;
+
   width: 100%;
+}
+.inputPassword {
+  border: 1px solid black;
+  display: flex;
+  border-radius: 15px;
+}
+.inputPassword > div {
+  border-left: 1px solid black;
+  display: flex;
+  align-items: center;
+  width: 40px;
+}
+.inputPassword > input {
+  flex: 1;
+  border: none;
 }
 
 p:last-child {
@@ -162,7 +176,16 @@ button {
   color: rgb(255, 255, 255);
   font-weight: bold;
 }
+input:focus {
+  outline: none;
+}
 svg {
   margin-left: 10px;
+}
+
+.errorText {
+  color: var(--orange);
+  text-align: center;
+  font-weight: bold;
 }
 </style>

@@ -8,6 +8,7 @@ const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const isSubmitting = ref(false)
+const displayPassword = ref(false)
 
 const GlobalStore = inject('GlobalStore')
 
@@ -58,23 +59,49 @@ const handleSubmit = async () => {
         </div>
         <label for="username"
           ><span>Nom <sup>*</sup> </span></label
-        ><input type="text" name="username" id="username" v-model="username" />
+        ><input
+          type="text"
+          name="username"
+          id="username"
+          v-model="username"
+          @input="errorMessage = ''"
+        />
 
-        <label for="email"
-          ><span>E-mail <sup>*</sup></span
-          ><input type="email" name="email" id="email" v-model="email"
-        /></label>
+        <label for="email">
+          <span>Email<sup>*</sup></span>
+          <input type="email" name="email" id="email" v-model="email" @input="errorMessage = ''" />
+        </label>
 
-        <label for="password"
-          ><span>Mot de passe <sup>*</sup></span
-          ><input type="password" name="password" id="password" v-model="password"
-        /></label>
+        <label for="password">
+          <span>Mot de passe <sup>*</sup></span>
+          <div class="inputPassword">
+            <input
+              :type="displayPassword ? 'text' : 'password'"
+              name="password"
+              id="password"
+              v-model="password"
+              @input="errorMessage = ''"
+            />
+            <div>
+              <font-awesome-icon
+                :icon="['far', 'eye-slash']"
+                v-if="!displayPassword"
+                @click="displayPassword = !displayPassword"
+              />
+              <font-awesome-icon
+                :icon="['far', 'eye']"
+                v-else
+                @click="displayPassword = !displayPassword"
+              />
+            </div>
+          </div>
+        </label>
 
         <p v-if="isSubmitting">Insription en cours ...</p>
 
         <button v-else>S'incrire <font-awesome-icon :icon="['fas', 'arrow-right']" /></button>
 
-        <p v-if="errorMessage">{{ errorMessage }}</p>
+        <p v-if="errorMessage" class="errorText">{{ errorMessage }}</p>
 
         <p>
           Vous avez déjà un compte ?
@@ -124,10 +151,33 @@ h1 {
 input {
   height: 2.813rem;
   border-radius: 15px;
-  border: 1px solid var(--dark-grey);
-  gap: 10px;
   width: 100%;
 }
+.inputPassword {
+  border: 1px solid black;
+  display: flex;
+  border-radius: 15px;
+}
+.inputPassword > div {
+  border-left: 1px solid black;
+  display: flex;
+  align-items: center;
+  width: 40px;
+}
+.inputPassword > input {
+  flex: 1;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 button {
   border: none;
   background-color: var(--orange);
@@ -139,11 +189,20 @@ button {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-p:last-child {
-  text-align: center;
-}
+
 a {
   font-weight: bold;
   text-decoration: underline;
+}
+svg {
+  margin-left: 10px;
+}
+p:last-child {
+  text-align: center;
+}
+.errorText {
+  color: var(--orange);
+  text-align: center;
+  font-weight: bold;
 }
 </style>
