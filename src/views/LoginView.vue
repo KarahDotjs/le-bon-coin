@@ -50,7 +50,7 @@ const handleSubmit = async () => {
       <form @submit.prevent="handleSubmit">
         <div>
           <h1>Bonjour !</h1>
-          <h2>Connectez-vous pour découvrir toutes nos fonctionnalités.</h2>
+          <p>Connectez-vous pour découvrir toutes nos fonctionnalités.</p>
         </div>
 
         <label for="email"
@@ -64,11 +64,11 @@ const handleSubmit = async () => {
 
         <p v-if="isSubmitting">Connexion en cours ...</p>
 
-        <button v-else>Se connecter</button>
+        <button v-else>Se connecter <font-awesome-icon :icon="['fas', 'arrow-right']" /></button>
         <p v-if="errorMessage">{{ errorMessage }}</p>
         <p>
           Envie de nous rejoindre ?
-          <RouterLink :to="{ name: 'signup' }">Créer un compte</RouterLink>
+          <RouterLink :to="{ name: 'signup' }"> <span>Créer un compte</span></RouterLink>
         </p>
       </form>
     </div>
@@ -113,10 +113,33 @@ form {
   box-shadow: 0 0 7px 1px var(--med-grey);
 }
 
-/* input {
+input {
   height: 2.813rem;
   border-radius: 15px;
   border: 1px solid var(--dark-grey);
   gap: 10px;
-} */
+  width: 100%;
+}
+
+form p {
+  text-align: center;
+}
+label {
+  margin-bottom: 7px;
+  font-size: 16px;
+  font-weight: 400;
+}
+span {
+  font-weight: bold;
+  text-decoration: underline;
+}
+button {
+  border: none;
+  background-color: var(--orange);
+  font-size: 14px;
+  height: 2.813rem;
+  border-radius: 15px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
 </style>

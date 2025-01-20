@@ -48,8 +48,17 @@ const cycleList = computed(() => {
     <div class="container" v-else>
       <div class="leftCol">
         <div class="caroussel">
-          <font-awesome-icon :icon="['fas', 'angle-left']" @click="cycleList.prev()" />
-          <img :src="cycleList.state.value.attributes.url" alt="" @click="cycleList.next()" />
+          <font-awesome-icon
+            :icon="['fas', 'angle-left']"
+            @click="cycleList.prev()"
+            v-if="offerInfos.attributes.pictures.data?.length <= 1"
+          />
+          <img
+            :src="cycleList.state.value.attributes.url"
+            alt=""
+            @click="cycleList.next()"
+            v-if="offerInfos.attributes.pictures.data?.length <= 1"
+          />
           <font-awesome-icon :icon="['fas', 'angle-right']" />
         </div>
         <p class="title">{{ offerInfos.attributes.title }}</p>
@@ -203,5 +212,9 @@ h2 {
 .caroussel {
   display: flex;
   align-items: center;
+}
+.caroussel svg {
+  font-size: 20px;
+  cursor: pointer;
 }
 </style>
