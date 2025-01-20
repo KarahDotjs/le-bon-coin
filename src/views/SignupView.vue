@@ -72,13 +72,13 @@ const handleSubmit = async () => {
 
         <p v-if="isSubmitting">Insription en cours ...</p>
 
-        <button v-else>S'incrire</button>
+        <button v-else>S'incrire <font-awesome-icon :icon="['fas', 'arrow-right']" /></button>
 
         <p v-if="errorMessage">{{ errorMessage }}</p>
 
         <p>
           Vous avez déjà un compte ?
-          <RouterLink :to="{ name: 'login' }"> Connectez-vous</RouterLink>
+          <RouterLink :to="{ name: 'login' }"> Connectez-vous </RouterLink>
         </p>
       </form>
     </div>

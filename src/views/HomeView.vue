@@ -58,4 +58,9 @@ main {
   flex-wrap: wrap;
   gap: 30px 15px;
 }
+main p {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
 </style>

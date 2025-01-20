@@ -24,6 +24,7 @@ import {
   faHeart,
   faClock,
   faEyeSlash,
+  faEye,
 } from '@fortawesome/free-regular-svg-icons'
 library.add(
   faSignOutAlt,
@@ -35,11 +36,12 @@ library.add(
   faMapMarkerAlt,
   faCheckDouble,
   faClock,
-  faEyeSlash,
   faAngleLeft,
   faAngleRight,
   faArrowAltCircleRight,
   faArrowRight,
+  faEyeSlash,
+  faEye,
 )
 
 const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)

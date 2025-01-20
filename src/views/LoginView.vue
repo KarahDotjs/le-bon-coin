@@ -7,6 +7,7 @@ const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const isSubmitting = ref(false)
+const displayPassword = ref(false)
 
 const GlobalStore = inject('GlobalStore')
 
@@ -55,12 +56,30 @@ const handleSubmit = async () => {
 
         <label for="email"
           >E-mail <sup>*</sup>
-          <input type="email" name="email" id="email" v-model="email" />
+          <input type="email" name="email" id="email" v-model="email" @input="errorMessage = ''" />
         </label>
         <label for="password">
-          Mot de passe <sup>*</sup
-          ><input type="password" name="password" id="password" v-model="password"
-        /></label>
+          Mot de passe <sup>*</sup>
+          <div>
+            <input
+              :type="displayPassword ? 'text' : 'password'"
+              name="password"
+              id="password"
+              v-model="password"
+              @input="errorMessage = ''"
+            />
+            <font-awesome-icon
+              :icon="['far', 'eye-slash']"
+              v-if="!displayPassword"
+              @click="displayPassword = !displayPassword"
+            />
+            <font-awesome-icon
+              :icon="['far', 'eye']"
+              v-else
+              @click="displayPassword = !displayPassword"
+            />
+          </div>
+        </label>
 
         <p v-if="isSubmitting">Connexion en cours ...</p>
 
