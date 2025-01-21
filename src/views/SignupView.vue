@@ -151,15 +151,16 @@ h1 {
 input {
   height: 2.813rem;
   border-radius: 15px;
+  border: 1px solid var(--dark-grey);
   width: 100%;
 }
 .inputPassword {
-  border: 1px solid black;
+  border: 1px solid var(--dark-grey);
   display: flex;
   border-radius: 15px;
 }
 .inputPassword > div {
-  border-left: 1px solid black;
+  border-left: 1px solid var(--dark-grey);
   display: flex;
   align-items: center;
   width: 40px;

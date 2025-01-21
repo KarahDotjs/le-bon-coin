@@ -48,7 +48,7 @@ const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)
 
 app.use(router)
 
-const userToken = ref('test')
+const userToken = ref('')
 
 const changeToken = (token) => {
   userToken.value = token

@@ -22,7 +22,7 @@ console.log(GlobalStore.userToken)
           </div>
         </div>
         <div class="userPart">
-          <RouterLink :to="{ name: 'login' }" v-if="!GlobalStore.value">
+          <RouterLink :to="{ name: 'login' }" v-if="!GlobalStore.userToken.value">
             <div>
               <font-awesome-icon :icon="['far', 'user']" />
               <p>Se connecter</p>
