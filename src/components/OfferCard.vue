@@ -37,8 +37,9 @@ const formatedPrice = computed(() => {
           :src="offerInfos.attributes.owner.data.attributes.avatar.data.attributes.url"
           class="avatar"
           alt=""
-          v-if="offerInfos.attributes.owner.data.attributes.avatar.data"
+          v-if="offerInfos.attributes.owner.data.attributes.avatar"
         />
+        <!-- ajouter data au v-if si beug -->
 
         <p>{{ offerInfos.attributes.owner.data.attributes.username }}</p>
       </div>

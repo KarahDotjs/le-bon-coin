@@ -5,6 +5,10 @@ import { inject } from 'vue'
 
 const GlobalStore = inject('GlobalStore')
 console.log(GlobalStore.userToken)
+const disconnectUser = () => {
+  GlobalStore.changeUserInfos(null)
+  $cookies.remove('userInfos')
+}
 </script>
 
 <template>
@@ -22,13 +26,19 @@ console.log(GlobalStore.userToken)
           </div>
         </div>
         <div class="userPart">
-          <RouterLink :to="{ name: 'login' }" v-if="!GlobalStore.userToken.value">
+          <RouterLink :to="{ name: 'login' }" v-if="!GlobalStore.userInfos.value">
             <div>
               <font-awesome-icon :icon="['far', 'user']" />
               <p>Se connecter</p>
             </div>
           </RouterLink>
-          <font-awesome-icon :icon="['fas', 'sign-out-alt']" v-else />
+          <div v-else class="disconnectPart">
+            <div>
+              <font-awesome-icon :icon="['far', 'user']" />
+              <p>{{ GlobalStore.userInfos.value.username }}</p>
+            </div>
+            <font-awesome-icon :icon="['fas', 'sign-out-alt']" @click="disconnectUser" />
+          </div>
         </div>
       </div>
 
@@ -112,7 +122,7 @@ input:focus {
   flex-direction: column;
   align-items: center;
   font-size: 0.75rem;
-  gap: 10px;
+  /* gap: 10px; */
 }
 .userPart svg {
   font-size: 1.125rem;
